@@ -146,13 +146,13 @@ def slug(text):
     return re.sub(r"[^\w\- ]", "", text.lower()).replace(" ", "-")
 
 
+TABLE_HEADER = ["| Tool | Description | Updated |", "| --- | --- | --- |"]
+
+
 def tool_row(t, sources):
     """Render one tool as a Markdown table row for the README."""
-    version = f" `{t['version']}`" if t.get("version") else ""
-    name = f"[{esc(t['name'])}]({md_url(t['url'])}){version}<br><sub>{esc(short_url(t['url']))}</sub>"
-    tags = " ".join(f"`{x}`" for x in t["tags"])
-    source = sources.get(t["source"], {}).get("label", t["source"])
-    cells = [name, esc(t["description"]), tags, esc(source), esc(t.get("maintainer", "")), t.get("updated", "")]
+    name = f"[{esc(t['name'])}]({md_url(t['url'])})"
+    cells = [name, esc(t["description"]), t.get("updated", "").replace("-", "\u2011")]  # non-breaking hyphens keep the date on one line
     return "| " + " | ".join(cells) + " |"
 
 
@@ -168,16 +168,14 @@ def render_readme(index, config):
             continue
         title = info["label"]
         toc.append(f"- [{title}](#{slug(title)}) ({len(group)})")
-        lines = [f"## {title}", "", "| Tool | Description | Tags | Source | Maintainer | Updated |",
-                 "| --- | --- | --- | --- | --- | --- |"]
+        lines = [f"## {title}", "", *TABLE_HEADER]
         lines += [tool_row(t, index["sources"]) for t in group]
         sections.append("\n".join(lines))
 
     if archived:
         toc.append(f"- [Archived](#archived) ({len(archived)})")
         lines = ["## Archived", "", "End-of-life or superseded tools, kept for reference.", "",
-                 "| Tool | Description | Tags | Source | Maintainer | Updated |",
-                 "| --- | --- | --- | --- | --- | --- |"]
+                 *TABLE_HEADER]
         lines += [tool_row(t, index["sources"]) for t in archived]
         sections.append("\n".join(lines))
 
@@ -191,8 +189,7 @@ def render_readme(index, config):
     featured = [t for t in tools if t.get("featured")]  # already in name order
     featured_text = ""
     if featured:
-        flines = ["## Featured", "", "| Tool | Description | Tags | Source | Maintainer | Updated |",
-                  "| --- | --- | --- | --- | --- | --- |"]
+        flines = ["## Featured", "", *TABLE_HEADER]
         flines += [tool_row(t, index["sources"]) for t in featured]
         featured_text = "\n".join(flines) + "\n\n"
 
