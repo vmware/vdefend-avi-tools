@@ -1,0 +1,6 @@
+.git
+.githooks
+.DS_Store
+build/Dockerfile
+build/docker-compose.yml
+.dockerignore

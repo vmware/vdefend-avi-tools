@@ -1,0 +1,10 @@
+{
+    "name": "vcf-mgmt-wld-security",
+    "description": "Terraform configuration to automate the deployment of vDefend Distributed Firewall (DFW) policies that secure VMware Cloud Foundation (VCF) management components, including VCF Fleet, VCF Fleet management service, SDDC Manager, vCenter Servers, NSX Managers, vDefend Security Services Platfrom, Avi Load Balancer, etc.",
+    "product": ["vdefend", "avi"],
+    "type": "automation",
+    "tags": ["distributed-firewall"],
+    "url": "https://github.com/vmware-nsx/vcf-mgmt-wld-security",
+    "maintainer": "nnikodimov",
+    "updated": "2026-08-31"
+}

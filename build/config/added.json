@@ -1,0 +1,22 @@
+{
+  "ansible-for-nsxt": "2026-11-19",
+  "avi-datascript-examples": "2026-11-11",
+  "avi-devops-tools": "2026-11-11",
+  "lamw-deploy-license-hub": "2026-11-19",
+  "lamw-deploy-vdefend-sspi": "2026-11-19",
+  "lamw-ssp52-powershell-module": "2026-11-19",
+  "nsx-t-code-samples": "2026-11-10",
+  "powernsx": "2026-11-16",
+  "terraform-provider-nsxt": "2026-11-19",
+  "terraform-provider-ssp": "2026-11-19",
+  "terraform-provider-sspi": "2026-11-19",
+  "terrafrom-provider-vcfa": "2026-11-19",
+  "vcf-mgmt-wld-security": "2026-08-31",
+  "vdefend-as-code": "2026-10-02",
+  "vdefend-idps-virtual-patching-automation": "2026-11-10",
+  "vks-secure-3tierapp": "2026-09-24",
+  "vmflowgen": "2026-01-28",
+  "vmflowgen-topologies-hol-2670": "2026-03-03",
+  "vmflowgen-topologies-hol-2770": "2026-11-19",
+  "vsphere-sup-vks-dfw": "2026-09-24"
+}

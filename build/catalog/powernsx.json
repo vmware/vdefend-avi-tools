@@ -1,0 +1,13 @@
+{
+    "name": "PowerNSX",
+    "description": "A PowerShell module that abstracts the VMware NSX for vSphere API to a set of easily used PowerShell functions",
+    "product": ["vdefend"],
+    "version": "Build-1192",
+    "type": "script",
+    "tags": ["distributed-firewall"],
+    "url": "https://github.com/vmware-archive/powernsx",
+    "maintainer": "PowerNSX",
+    "updated": "2021-05-10",
+    "archived": true,
+    "archived_reason": "NSX for vSphere is end of life."
+}

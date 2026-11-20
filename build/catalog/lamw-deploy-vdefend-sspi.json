@@ -1,0 +1,10 @@
+{
+    "name": "PowerCLI script to deploy vDefend Security Services Platform Installer",
+    "description": "PowerCLI script by William Lam that deploys the Security Services Platform Installer 5.2 OVA to vCenter, setting network, DNS, NTP and passwords through OVF properties.",
+    "product": ["vdefend", "avi"],
+    "type": "script",
+    "tags": [],
+    "url": "https://github.com/lamw/vmware-scripts/blob/master/powershell/deploy_vdefend_security_services_platform.ps1",
+    "maintainer": "lamw",
+    "updated": "2026-09-16"
+}

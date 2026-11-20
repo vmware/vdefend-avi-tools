@@ -1,0 +1,10 @@
+{
+    "name": "Ansible for NSX-T",
+    "description": "This repository contains NSX-T Ansible Modules, which one can use with Ansible to work with VMware NSX-T Data Center.",
+    "product": ["vdefend"],
+    "type": "automation",
+    "tags": [],
+    "url": "https://github.com/vmware-archive/ansible-for-nsxt",
+    "maintainer": "vmware-archive",
+    "updated": "2025-03-19"
+}

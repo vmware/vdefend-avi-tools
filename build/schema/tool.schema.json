@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Tool entry",
+  "description": "Editor hint only. The authoritative checks (including product, type and tag names) are in build/build.py.",
+  "type": "object",
+  "required": [
+    "name",
+    "description",
+    "product",
+    "type",
+    "tags",
+    "url"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "product": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "type": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "description": "Each tag must exist in build/config/tags.json (checked by build.py, not by this schema)."
+    },
+    "url": {
+      "type": "string",
+      "pattern": "^https?://"
+    },
+    "version": {
+      "type": "string"
+    },
+    "maintainer": {
+      "type": "string"
+    },
+    "updated": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "broadcom",
+        "community"
+      ],
+      "default": "community"
+    },
+    "update_source": {
+      "type": "string",
+      "enum": [
+        "release",
+        "commit"
+      ],
+      "description": "How check_updates.py dates a GitHub tool. 'commit' = latest commit (on the repo, or on the folder for a /tree/ URL); never reads releases or sets version. 'release' = repo's latest release. Default: release for a plain repo URL (falling back to tag, then commit), commit for a /tree/ or /blob/ URL."
+    },
+    "release_tag_prefix": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Only consider releases whose tag starts with this (e.g. 'tool-a/') when check_updates.py looks up the version, for monorepos that tag each component. Implies update_source 'release'; the prefix is removed from the version. Not allowed with update_source 'commit'."
+    },
+    "archived": {
+      "type": "boolean",
+      "default": false,
+      "description": "Hide from the default listing. Shown only when the Archived filter is set to Include or Only."
+    },
+    "archived_reason": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Why it was archived (shown to users). Only allowed when archived is true."
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show in the Featured band at the top of the website's default view. Not allowed on archived tools."
+    },
+    "added": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "Optional override. Normally recorded automatically in build/config/added.json."
+    }
+  }
+}

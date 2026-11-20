@@ -1,0 +1,11 @@
+{
+    "name": "Avi DataScript Samples Library",
+    "description": "A large collection of Avi DataScript examples.",
+    "product": ["avi"],
+    "type": "script",
+    "tags": [],
+    "url": "https://github.com/vmware/nsx-alb-datascript-samples-library",
+    "maintainer": "Avi Team",
+    "update_source": "commit",
+    "updated": "2026-07-08"
+}

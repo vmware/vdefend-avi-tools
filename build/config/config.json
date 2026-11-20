@@ -1,0 +1,34 @@
+{
+  "site_url": "",
+  "products": {
+    "vdefend": {
+      "label": "VMware vDefend",
+      "color": "purple",
+      "short": "vDefend"
+    },
+    "avi": {
+      "label": "VMware Avi Load Balancer",
+      "color": "blue",
+      "short": "Avi"
+    }
+  },
+  "types": {
+    "script": "Script",
+    "utility": "Utility",
+    "automation": "Automation",
+    "documentation": "Documentation",
+    "link": "Link"
+  },
+  "sources": {
+    "broadcom": {
+      "label": "Broadcom",
+      "color": "success"
+    },
+    "community": {
+      "label": "Community",
+      "color": "orange"
+    }
+  },
+  "new_days": 30,
+  "latest_count": 5
+}

@@ -1,0 +1,14 @@
+{
+    "name": "",
+    "description": "",
+    "product": ["vdefend", "avi"],
+    "type": "script",
+    "tags": [],
+    "url": "",
+    "maintainer": "",
+    "featured": false,
+    "archived": false,
+    "source": "community",
+    "update_source": "commit",
+    "updated": ""
+}

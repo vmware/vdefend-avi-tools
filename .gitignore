@@ -1,0 +1,14 @@
+.DS_Store
+
+*.pyc
+.pytest_cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+
+site/data/meta.json
+
+scripts/dev-*

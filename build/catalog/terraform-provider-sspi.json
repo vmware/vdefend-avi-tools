@@ -1,0 +1,11 @@
+{
+    "name": "Terraform provider for VMware vDefend Security Services Platform Installer (SSPI)",
+    "description": "Official Terraform provider for the VMware vDefend Security Services Platform Installer (SSPI) — the Day-0/Day-1 bootstrap and lifecycle-management appliance for VMware Security Services Platform (SSP).",
+    "product": ["vdefend"],
+    "type": "automation",
+    "tags": [],
+    "url": "https://github.com/vmware/terraform-provider-sspi",
+    "maintainer": "Broadcom",
+    "source": "broadcom",
+    "updated": "2026-11-15"
+}

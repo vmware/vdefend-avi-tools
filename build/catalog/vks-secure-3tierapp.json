@@ -1,0 +1,10 @@
+{
+    "name": "vks-secure-3tierapp",
+    "description": "Terraform example to configure vDefend policies for the 3tierapp workload",
+    "product": ["vdefend", "avi"],
+    "type": "script",
+    "tags": ["vks", "distributed-firewall"],
+    "url": "https://github.com/nnikodimov/vks-secure-3tierapp",
+    "maintainer": "nnikodimov",
+    "updated": "2026-09-24"
+}

@@ -1,0 +1,12 @@
+{
+    "name": "VMFlowGen",
+    "description": "VMFlowgen is a free, lightweight virtual appliance developed by Broadcom/VMware to generate realistic network traffic and test security controls like the Broadcom TechDocs vDefend Distributed Firewall, IDS/IPS, and Malware Prevention",
+    "product": ["vdefend", "avi"],
+    "version": "0.9.0",
+    "type": "automation",
+    "tags": ["distributed-firewall", "idps", "mps", "nta", "ndr"],
+    "url": "https://repo.vmware.com/nsx-tpm/vmflowgen/",
+    "source": "broadcom",
+    "maintainer": "ANS TPM Team",
+    "updated": "2026-01-28"
+}

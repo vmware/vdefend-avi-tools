@@ -1,0 +1,11 @@
+{
+    "name": "VMFlowGen HOL-2770 Topologies",
+    "description": "VMFlowGen Topologies for HOL-2770 VMware vDefend Firewall with Advanced Threat Prevention",
+    "product": ["vdefend", "avi"],
+    "type": "automation",
+    "tags": ["distributed-firewall", "idps", "mps", "nta", "ndr"],
+    "url": "https://github.com/Broadcom/HOL-2770/tree/main/vmflowgen",
+    "source": "broadcom",
+    "maintainer": "HOL Team",
+    "updated": "2026-06-29"
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>vDefend-Avi-Tools</title>
+  <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
+  <link rel="stylesheet" href="https://unpkg.com/@cds/core@6/global.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/@clr/ui@17/clr-ui.min.css">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script>try{var t=localStorage.getItem("theme");if(t==="dark"){document.documentElement.setAttribute("cds-theme","dark");document.documentElement.dataset.theme="dark"}}catch(e){}</script>
+</head>
+<body>
+<div class="main-container">
+  <header class="app-header">
+    <div class="app-branding">
+      <a id="home" class="app-title" href="./">vDefend &amp; Avi Tools</a>
+      <div class="app-subtitle">The central place to find all the tools and utilities for vDefend and Avi Load Balancer</div>
+    </div>
+    <div class="app-actions">
+      <button id="theme-toggle" type="button" class="icon-btn" aria-label="Switch to dark mode" title="Toggle light/dark mode"></button>
+      <div class="menu-wrap">
+        <button id="menu-btn" type="button" class="icon-btn" aria-haspopup="true" aria-expanded="false" aria-controls="app-menu" aria-label="Menu" title="Menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div id="app-menu" class="app-menu" role="menu" hidden>
+          <a role="menuitem" href="https://github.com/vmware/vdefend-avi-tools/issues" target="_blank" rel="noopener">Report an issue</a>
+        </div>
+      </div>
+      <a class="github-link" href="https://github.com/vmware/vdefend-avi-tools" id="repo-link" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </header>
+
+  <div class="content-container">
+    <nav id="filters" class="sidenav filters" aria-label="Filters">
+      <section class="sidenav-content">
+        <div class="clr-form-control">
+          <label for="search" class="clr-control-label">Search</label>
+          <div class="clr-control-container">
+            <div class="clr-input-wrapper">
+              <input id="search" type="search" class="clr-input" placeholder="Name, description, tag…">
+            </div>
+          </div>
+        </div>
+
+        <h4>Starred</h4>
+        <div id="f-starred"></div>
+
+        <h4>Product</h4>
+        <div id="f-product"></div>
+
+        <details class="filter-group">
+          <summary>Type</summary>
+          <div id="f-type"></div>
+        </details>
+
+        <details class="filter-group">
+          <summary>Tags</summary>
+          <div id="f-tags" class="tag-cloud"></div>
+        </details>
+
+        <details class="filter-group" id="archived-group">
+          <summary>Archived</summary>
+          <div id="f-archived"></div>
+        </details>
+
+        <button id="clear" class="btn btn-sm btn-link">Clear all filters</button>
+      </section>
+    </nav>
+
+    <main class="content-area">
+      <h1>Tools &amp; Utilities</h1>
+      <p>A central index of scripts and utilities for VMware vDefend and Avi Load Balancer.</p>
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <button id="toggle-filters" type="button" class="btn btn-sm btn-outline" aria-controls="filters" aria-expanded="true"></button>
+          <p id="count" class="p5" aria-live="polite"></p>
+        </div>
+        <div class="toolbar-controls">
+          <div class="clr-select-wrapper">
+            <select id="sort" class="clr-select" aria-label="Sort by"></select>
+          </div>
+          <div class="clr-select-wrapper">
+            <select id="size" class="clr-select" aria-label="Results per page"></select>
+          </div>
+          <div class="btn-group" role="group" aria-label="View">
+            <button id="view-cards" type="button" class="btn btn-sm">Cards</button>
+            <button id="view-table" type="button" class="btn btn-sm">Table</button>
+          </div>
+        </div>
+      </div>
+      <section id="featured" class="featured" aria-labelledby="featured-title" hidden></section>
+      <div id="results"></div>
+      <div id="pager" class="pager" role="navigation" aria-label="Pagination"></div>
+    </main>
+  </div>
+  <footer class="app-footer"><span id="site-version">Updated: dev build</span></footer>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

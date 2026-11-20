@@ -1,0 +1,12 @@
+{
+    "name": "Terraform provider for VCFA",
+    "description": "The Terraform Provider for VMware Cloud Foundation Automation is a plugin for Terraform that allows you to interact with VMware Cloud Foundation Automation 9+ by Broadcom.",
+    "product": ["vdefend"],
+    "type": "automation",
+    "tags": [],
+    "url": "https://github.com/vmware/terraform-provider-vcfa",
+    "version": "1.2.3",
+    "maintainer": "Broadcom",
+    "source": "broadcom",
+    "updated": "2026-09-26"
+}

@@ -1,0 +1,11 @@
+{
+    "name": "vDefend as Code via VCFA CCI",
+    "description": "Patterns and a working Terraform example for managing VMware Cloud Foundation (VCF) 9.1's vDefend security constructs — Distributed Firewall, Gateway Firewall, Security Profiles, Groups, Transit Gateway policy — as declarative, self-service Infrastructure-as-Code through VCF Automation's Cloud Consumption Interface (CCI).",
+    "product": ["vdefend"],
+    "type": "script",
+    "tags": ["distributed-firewall", "terraform", "vcfa"],
+    "url": "https://github.com/nnikodimov/vdefend-as-code",
+    "maintainer": "nnikodimov",
+    "featured": false,
+    "updated": "2026-10-02"
+}

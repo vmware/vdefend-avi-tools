@@ -1,0 +1,11 @@
+{
+    "name": "Terraform provider for VMware vDefend Security Services Platform (SSP)",
+    "description": "Official Terraform provider for the VMware Security Services Platform (SSP) runtime cluster.",
+    "product": ["vdefend"],
+    "type": "automation",
+    "tags": [],
+    "url": "https://github.com/vmware/terraform-provider-ssp",
+    "maintainer": "Broadcom",
+    "source": "broadcom",
+    "updated": "2026-11-15"
+}

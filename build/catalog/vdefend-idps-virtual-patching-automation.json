@@ -1,0 +1,11 @@
+{
+    "name": "vDefend IDPS Virtual Patching Automation",
+    "description": "Python-based automation tool that demonstrates the power of vDefend IDPS for virtual patching. It integrates with Nessus vulnerability scans to automatically deploy targeted IDPS signatures to protect vulnerable workloads.",
+    "product": ["vdefend"],
+    "version": "1.0.0",
+    "type": "script",
+    "tags": ["idps", "virtual patching"],
+    "url": "https://github.com/stijnvanveerdeghem-eng/vdefend-virtual-patching",
+    "maintainer": "stijnvanveerdeghem-eng",
+    "updated": "2026-10-30"
+}

@@ -1,0 +1,12 @@
+{
+    "name": "Terraform provider for VMware NSX-T",
+    "description": "The Terraform Provider for VMware NSX is a plugin for Terraform that allows you to interact with VMware NSX.",
+    "product": ["vdefend"],
+    "type": "automation",
+    "tags": [],
+    "url": "https://github.com/vmware/terraform-provider-nsxt",
+    "version": "3.12.2",
+    "maintainer": "Broadcom",
+    "source": "broadcom",
+    "updated": "2026-11-13"
+}

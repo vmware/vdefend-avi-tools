@@ -1,0 +1,10 @@
+{
+  "name": "vDefend configuration for vSphere Supervisor + VKS",
+  "description": "vDefend Distributed Firewall configuration for a vSphere Supervisor + VKS environment.",
+  "product": ["vdefend"],
+  "type": "automation",
+  "tags": ["terraform", "distributed-firewall"],
+  "url": "https://github.com/nnikodimov/vsphere-sup-vks-dfw",
+  "maintainer": "nnikodimov",
+  "updated": "2026-09-24"
+}

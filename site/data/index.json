@@ -1,0 +1,407 @@
+{
+  "products": {
+    "vdefend": {
+      "label": "VMware vDefend",
+      "color": "purple",
+      "short": "vDefend"
+    },
+    "avi": {
+      "label": "VMware Avi Load Balancer",
+      "color": "blue",
+      "short": "Avi"
+    }
+  },
+  "types": {
+    "script": "Script",
+    "utility": "Utility",
+    "automation": "Automation",
+    "documentation": "Documentation",
+    "link": "Link"
+  },
+  "sources": {
+    "broadcom": {
+      "label": "Broadcom",
+      "color": "success"
+    },
+    "community": {
+      "label": "Community",
+      "color": "orange"
+    }
+  },
+  "new_days": 30,
+  "tools": [
+    {
+      "id": "ansible-for-nsxt",
+      "name": "Ansible for NSX-T",
+      "description": "This repository contains NSX-T Ansible Modules, which one can use with Ansible to work with VMware NSX-T Data Center.",
+      "product": [
+        "vdefend"
+      ],
+      "type": "automation",
+      "tags": [],
+      "url": "https://github.com/vmware-archive/ansible-for-nsxt",
+      "maintainer": "vmware-archive",
+      "updated": "2025-03-19",
+      "source": "community",
+      "archived": false,
+      "added": "2026-11-19"
+    },
+    {
+      "id": "avi-datascript-examples",
+      "name": "Avi DataScript Samples Library",
+      "description": "A large collection of Avi DataScript examples.",
+      "product": [
+        "avi"
+      ],
+      "type": "script",
+      "tags": [],
+      "url": "https://github.com/vmware/nsx-alb-datascript-samples-library",
+      "maintainer": "Avi Team",
+      "update_source": "commit",
+      "updated": "2026-07-08",
+      "source": "community",
+      "archived": false,
+      "added": "2026-11-11"
+    },
+    {
+      "id": "avi-devops-tools",
+      "name": "Avi DevOps Tooling",
+      "description": "Examples of how to manage your Avi infrastructure using tools, and different scripting languages.",
+      "product": [
+        "avi"
+      ],
+      "type": "automation",
+      "tags": [],
+      "url": "https://github.com/avinetworks/devops/",
+      "maintainer": "Avi Team",
+      "update_source": "commit",
+      "updated": "2026-10-28",
+      "source": "community",
+      "archived": false,
+      "added": "2026-11-11"
+    },
+    {
+      "id": "nsx-t-code-samples",
+      "name": "NSX-T Code Samples",
+      "description": "General code examples for NSX-T. There are vRA, Ansible, Policy API, Terraform, PowerCLI, Java and Python samples.",
+      "product": [
+        "vdefend"
+      ],
+      "type": "script",
+      "tags": [],
+      "url": "https://github.com/vmware-samples/nsx-t/",
+      "maintainer": "VMware-Samples",
+      "updated": "2024-01-30",
+      "source": "community",
+      "archived": false,
+      "added": "2026-11-10"
+    },
+    {
+      "id": "lamw-deploy-license-hub",
+      "name": "PowerCLI script to deploy vDefend License Hub 2.0",
+      "description": "PowerCLI script by William Lam that deploys the VMware License Hub 2.0 OVA to vCenter, setting network, DNS, NTP and passwords through OVF properties.",
+      "product": [
+        "vdefend",
+        "avi"
+      ],
+      "type": "script",
+      "tags": [],
+      "url": "https://github.com/lamw/vmware-scripts/blob/master/powershell/deploy_vdefend_license_hub.ps1",
+      "maintainer": "lamw",
+      "updated": "2026-09-24",
+      "source": "community",
+      "archived": false,
+      "added": "2026-11-19"
+    },
+    {
+      "id": "lamw-deploy-vdefend-sspi",
+      "name": "PowerCLI script to deploy vDefend Security Services Platform Installer",
+      "description": "PowerCLI script by William Lam that deploys the Security Services Platform Installer 5.2 OVA to vCenter, setting network, DNS, NTP and passwords through OVF properties.",
+      "product": [
+        "vdefend",
+        "avi"
+      ],
+      "type": "script",
+      "tags": [],
+      "url": "https://github.com/lamw/vmware-scripts/blob/master/powershell/deploy_vdefend_security_services_platform.ps1",
+      "maintainer": "lamw",
+      "updated": "2026-09-16",
+      "source": "community",
+      "archived": false,
+      "added": "2026-11-19"
+    },
+    {
+      "id": "powernsx",
+      "name": "PowerNSX",
+      "description": "A PowerShell module that abstracts the VMware NSX for vSphere API to a set of easily used PowerShell functions",
+      "product": [
+        "vdefend"
+      ],
+      "version": "Build-1192",
+      "type": "script",
+      "tags": [
+        "distributed-firewall"
+      ],
+      "url": "https://github.com/vmware-archive/powernsx",
+      "maintainer": "PowerNSX",
+      "updated": "2021-05-10",
+      "archived": true,
+      "archived_reason": "NSX for vSphere is end of life.",
+      "source": "community",
+      "added": "2026-11-16"
+    },
+    {
+      "id": "lamw-ssp52-powershell-module",
+      "name": "PowerShell Module for Automating vDefend Security Services Platform (SSP) 5.2 Configuration & Instance Deployment",
+      "description": "PowerShell Module to automate vDefend Security Services Platform (SSP) 5.2 Configuration & Instance Deployment.",
+      "product": [
+        "vdefend"
+      ],
+      "type": "script",
+      "tags": [
+        "ssp"
+      ],
+      "url": "https://github.com/lamw/Broadcom.Community.VDefendSSP",
+      "maintainer": "lamw",
+      "updated": "2026-09-19",
+      "source": "community",
+      "archived": false,
+      "added": "2026-11-19"
+    },
+    {
+      "id": "terrafrom-provider-vcfa",
+      "name": "Terraform provider for VCFA",
+      "description": "The Terraform Provider for VMware Cloud Foundation Automation is a plugin for Terraform that allows you to interact with VMware Cloud Foundation Automation 9+ by Broadcom.",
+      "product": [
+        "vdefend"
+      ],
+      "type": "automation",
+      "tags": [],
+      "url": "https://github.com/vmware/terraform-provider-vcfa",
+      "version": "1.2.3",
+      "maintainer": "Broadcom",
+      "source": "broadcom",
+      "updated": "2026-09-26",
+      "archived": false,
+      "added": "2026-11-19"
+    },
+    {
+      "id": "terraform-provider-nsxt",
+      "name": "Terraform provider for VMware NSX-T",
+      "description": "The Terraform Provider for VMware NSX is a plugin for Terraform that allows you to interact with VMware NSX.",
+      "product": [
+        "vdefend"
+      ],
+      "type": "automation",
+      "tags": [],
+      "url": "https://github.com/vmware/terraform-provider-nsxt",
+      "version": "3.12.2",
+      "maintainer": "Broadcom",
+      "source": "broadcom",
+      "updated": "2026-11-13",
+      "archived": false,
+      "added": "2026-11-19"
+    },
+    {
+      "id": "terraform-provider-ssp",
+      "name": "Terraform provider for VMware vDefend Security Services Platform (SSP)",
+      "description": "Official Terraform provider for the VMware Security Services Platform (SSP) runtime cluster.",
+      "product": [
+        "vdefend"
+      ],
+      "type": "automation",
+      "tags": [],
+      "url": "https://github.com/vmware/terraform-provider-ssp",
+      "maintainer": "Broadcom",
+      "source": "broadcom",
+      "updated": "2026-11-15",
+      "archived": false,
+      "added": "2026-11-19"
+    },
+    {
+      "id": "terraform-provider-sspi",
+      "name": "Terraform provider for VMware vDefend Security Services Platform Installer (SSPI)",
+      "description": "Official Terraform provider for the VMware vDefend Security Services Platform Installer (SSPI) — the Day-0/Day-1 bootstrap and lifecycle-management appliance for VMware Security Services Platform (SSP).",
+      "product": [
+        "vdefend"
+      ],
+      "type": "automation",
+      "tags": [],
+      "url": "https://github.com/vmware/terraform-provider-sspi",
+      "maintainer": "Broadcom",
+      "source": "broadcom",
+      "updated": "2026-11-15",
+      "archived": false,
+      "added": "2026-11-19"
+    },
+    {
+      "id": "vcf-mgmt-wld-security",
+      "name": "vcf-mgmt-wld-security",
+      "description": "Terraform configuration to automate the deployment of vDefend Distributed Firewall (DFW) policies that secure VMware Cloud Foundation (VCF) management components, including VCF Fleet, VCF Fleet management service, SDDC Manager, vCenter Servers, NSX Managers, vDefend Security Services Platfrom, Avi Load Balancer, etc.",
+      "product": [
+        "vdefend",
+        "avi"
+      ],
+      "type": "automation",
+      "tags": [
+        "distributed-firewall"
+      ],
+      "url": "https://github.com/vmware-nsx/vcf-mgmt-wld-security",
+      "maintainer": "nnikodimov",
+      "updated": "2026-08-31",
+      "source": "community",
+      "archived": false,
+      "added": "2026-08-31"
+    },
+    {
+      "id": "vdefend-as-code",
+      "name": "vDefend as Code via VCFA CCI",
+      "description": "Patterns and a working Terraform example for managing VMware Cloud Foundation (VCF) 9.1's vDefend security constructs — Distributed Firewall, Gateway Firewall, Security Profiles, Groups, Transit Gateway policy — as declarative, self-service Infrastructure-as-Code through VCF Automation's Cloud Consumption Interface (CCI).",
+      "product": [
+        "vdefend"
+      ],
+      "type": "script",
+      "tags": [
+        "distributed-firewall",
+        "terraform",
+        "vcfa"
+      ],
+      "url": "https://github.com/nnikodimov/vdefend-as-code",
+      "maintainer": "nnikodimov",
+      "featured": false,
+      "updated": "2026-10-02",
+      "source": "community",
+      "archived": false,
+      "added": "2026-10-02"
+    },
+    {
+      "id": "vsphere-sup-vks-dfw",
+      "name": "vDefend configuration for vSphere Supervisor + VKS",
+      "description": "vDefend Distributed Firewall configuration for a vSphere Supervisor + VKS environment.",
+      "product": [
+        "vdefend"
+      ],
+      "type": "automation",
+      "tags": [
+        "terraform",
+        "distributed-firewall"
+      ],
+      "url": "https://github.com/nnikodimov/vsphere-sup-vks-dfw",
+      "maintainer": "nnikodimov",
+      "updated": "2026-09-24",
+      "source": "community",
+      "archived": false,
+      "added": "2026-09-24"
+    },
+    {
+      "id": "vdefend-idps-virtual-patching-automation",
+      "name": "vDefend IDPS Virtual Patching Automation",
+      "description": "Python-based automation tool that demonstrates the power of vDefend IDPS for virtual patching. It integrates with Nessus vulnerability scans to automatically deploy targeted IDPS signatures to protect vulnerable workloads.",
+      "product": [
+        "vdefend"
+      ],
+      "version": "1.0.0",
+      "type": "script",
+      "tags": [
+        "idps",
+        "virtual patching"
+      ],
+      "url": "https://github.com/stijnvanveerdeghem-eng/vdefend-virtual-patching",
+      "maintainer": "stijnvanveerdeghem-eng",
+      "updated": "2026-10-30",
+      "source": "community",
+      "archived": false,
+      "added": "2026-11-10"
+    },
+    {
+      "id": "vks-secure-3tierapp",
+      "name": "vks-secure-3tierapp",
+      "description": "Terraform example to configure vDefend policies for the 3tierapp workload",
+      "product": [
+        "vdefend",
+        "avi"
+      ],
+      "type": "script",
+      "tags": [
+        "vks",
+        "distributed-firewall"
+      ],
+      "url": "https://github.com/nnikodimov/vks-secure-3tierapp",
+      "maintainer": "nnikodimov",
+      "updated": "2026-09-24",
+      "source": "community",
+      "archived": false,
+      "added": "2026-09-24"
+    },
+    {
+      "id": "vmflowgen",
+      "name": "VMFlowGen",
+      "description": "VMFlowgen is a free, lightweight virtual appliance developed by Broadcom/VMware to generate realistic network traffic and test security controls like the Broadcom TechDocs vDefend Distributed Firewall, IDS/IPS, and Malware Prevention",
+      "product": [
+        "vdefend",
+        "avi"
+      ],
+      "version": "0.9.0",
+      "type": "automation",
+      "tags": [
+        "distributed-firewall",
+        "idps",
+        "mps",
+        "nta",
+        "ndr"
+      ],
+      "url": "https://repo.vmware.com/nsx-tpm/vmflowgen/",
+      "source": "broadcom",
+      "maintainer": "ANS TPM Team",
+      "updated": "2026-01-28",
+      "archived": false,
+      "added": "2026-01-28"
+    },
+    {
+      "id": "vmflowgen-topologies-hol-2670",
+      "name": "VMFlowGen HOL-2670 Topologies",
+      "description": "VMFlowGen Topologies for HOL-2670 VMware vDefend Firewall with Advanced Threat Prevention",
+      "product": [
+        "vdefend",
+        "avi"
+      ],
+      "type": "automation",
+      "tags": [
+        "distributed-firewall",
+        "idps",
+        "mps",
+        "nta",
+        "ndr"
+      ],
+      "url": "https://github.com/Broadcom/HOL-2670/tree/main/vmflowgen",
+      "source": "broadcom",
+      "maintainer": "HOL Team",
+      "updated": "2026-03-02",
+      "archived": false,
+      "added": "2026-03-03"
+    },
+    {
+      "id": "vmflowgen-topologies-hol-2770",
+      "name": "VMFlowGen HOL-2770 Topologies",
+      "description": "VMFlowGen Topologies for HOL-2770 VMware vDefend Firewall with Advanced Threat Prevention",
+      "product": [
+        "vdefend",
+        "avi"
+      ],
+      "type": "automation",
+      "tags": [
+        "distributed-firewall",
+        "idps",
+        "mps",
+        "nta",
+        "ndr"
+      ],
+      "url": "https://github.com/Broadcom/HOL-2770/tree/main/vmflowgen",
+      "source": "broadcom",
+      "maintainer": "HOL Team",
+      "updated": "2026-06-29",
+      "archived": false,
+      "added": "2026-11-19"
+    }
+  ]
+}

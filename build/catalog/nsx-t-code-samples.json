@@ -1,0 +1,10 @@
+{
+    "name": "NSX-T Code Samples",
+    "description": "General code examples for NSX-T. There are vRA, Ansible, Policy API, Terraform, PowerCLI, Java and Python samples.",
+    "product": ["vdefend"],
+    "type": "script",
+    "tags": [],
+    "url": "https://github.com/vmware-samples/nsx-t/",
+    "maintainer": "VMware-Samples",
+    "updated": "2024-01-30"
+}

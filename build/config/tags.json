@@ -1,0 +1,22 @@
+{
+  "tags": {
+    "ansible": "Ansible playbooks, roles or modules",
+    "certificates": "Certificate management and expiry",
+    "distributed-firewall": "vDefend distributed firewall",
+    "integration": "Integrates multiple products or systems",
+    "python": "Written in Python",
+    "reporting": "Reports, exports and audits",
+    "security-policy": "Security policy management",
+    "terraform": "Terraform configurations and providers",
+    "vDefend": "VMware vDefend",
+    "vcfa": "VMware Cloud Foundation Automation (VCFA)",
+    "virtual-service": "Avi virtual services",
+    "ssp": "Security Services Platform",
+    "idps": "Intrusion Detection & Prevention System",
+    "virtual patching": "Virtual Patching",
+    "vks": "VMware vSphere Kubernetes Service",
+    "mps": "VMware vDefend Malware Prevention Service",
+    "nta": "VMware vDefend Network Traffic Analysis",
+    "ndr": "VMware vDefend Network Detection and Response"
+  }
+}

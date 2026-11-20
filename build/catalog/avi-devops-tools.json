@@ -1,0 +1,11 @@
+{
+    "name": "Avi DevOps Tooling",
+    "description": "Examples of how to manage your Avi infrastructure using tools, and different scripting languages.",
+    "product": ["avi"],
+    "type": "automation",
+    "tags": [],
+    "url": "https://github.com/avinetworks/devops/",
+    "maintainer": "Avi Team",
+    "update_source": "commit",
+    "updated": "2026-10-28"
+}

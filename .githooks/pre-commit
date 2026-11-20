@@ -1,0 +1,4 @@
+#!/bin/sh
+# Rebuild site/data/index.json and README.md and stage them so it can never be stale in a commit.
+python3 build/build.py || exit 1
+git add build/config/added.json site/data/index.json README.md
