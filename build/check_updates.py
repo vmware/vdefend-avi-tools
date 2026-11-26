@@ -17,12 +17,13 @@ It prints a report and changes nothing unless --write is given, in which case it
 updates the `updated` field (and `version`, when a real release was found). A stored date
 is never replaced by an older one unless --allow-older is given, because a release date can lag
 well behind recent commits.
-Run `python3 build/build.py` afterwards to regenerate site/data/index.json and README.md.
+With --write it then runs build/build.py itself to regenerate build/config/added.json,
+site/data/index.json and README.md (skip with --no-build).
 
 Usage:  python3 build/check_updates.py
         python3 build/check_updates.py terraform-provider-nsxt   # just one (or more) entries
         python3 build/check_updates.py --json report.json
-        python3 build/check_updates.py --write [--no-version] [--allow-older]
+        python3 build/check_updates.py --write [--no-version] [--allow-older] [--no-build]
 
 Set GITHUB_TOKEN to avoid the unauthenticated GitHub rate limit (60 requests/hour).
 """
@@ -38,8 +39,9 @@ from datetime import datetime
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 
-BUILD = Path(__file__).resolve().parent
-CATALOG = BUILD / "catalog"
+sys.path.insert(0, str(Path(__file__).resolve().parent))  # so `import build` finds build/build.py, even under `python -I`
+import build  # build/build.py: shared catalogue discovery, paths and rebuild
+
 API = "https://api.github.com"
 TIMEOUT = 20
 
@@ -242,12 +244,14 @@ def main():
     ap.add_argument("--no-version", action="store_true", help="with --write, leave `version` alone")
     ap.add_argument("--allow-older", action="store_true",
                     help="with --write, also replace a stored date with an older found date (default: dates only move forward)")
+    ap.add_argument("--no-build", action="store_true",
+                    help="with --write, don't run build/build.py afterwards (generated files are then stale until you do)")
     ap.add_argument("--json", metavar="PATH", help="also write the results as JSON")
     ap.add_argument("ids", nargs="*", metavar="ID",
                     help="only check these catalogue entries (filename without .json); default: all")
     args = ap.parse_args()
 
-    files = sorted(p for p in CATALOG.rglob("*.json") if ".example" not in p.parts)
+    files = list(build.iter_catalog())
     if args.ids:
         known = {p.stem for p in files}
         unknown = [i for i in args.ids if i not in known]
@@ -257,7 +261,7 @@ def main():
     rows = []
     for path in files:
         try:
-            tool = json.loads(path.read_text(encoding="utf-8"))
+            tool = build.load(path)
             url = tool["url"]
         except (ValueError, KeyError) as e:
             rows.append({"id": path.stem, "path": path, "cur_date": None, "cur_version": None,
@@ -316,8 +320,19 @@ def main():
                 json.loads(text)  # never leave a broken file behind
                 r["path"].write_text(text, encoding="utf-8")
                 changed += 1
-                print(f"  {r['path'].relative_to(BUILD.parent)}: {', '.join(msgs)}")
-        print(f"\nUpdated {changed} file(s)." + (" Now run: python3 build/build.py" if changed else ""))
+                print(f"  {r['path'].relative_to(build.ROOT)}: {', '.join(msgs)}")
+        print(f"\nUpdated {changed} file(s).")
+        if changed and not args.no_build:
+            print("Rebuilding generated files (build/build.py)...", flush=True)
+            try:
+                build.build()
+            except SystemExit as e:  # build() reports problems itself, or exits with a message
+                if isinstance(e.code, str):
+                    print(e.code, file=sys.stderr)
+                print("build.py failed; fix the problems above and re-run it.", file=sys.stderr)
+                return 1
+        elif changed:
+            print("Skipped rebuild (--no-build). Now run: python3 build/build.py")
     elif any(r["date"] and r["date"] != r["cur_date"] for r in rows):
         print("Dry run: re-run with --write to apply these dates" + ("" if args.no_version else " and release versions") + ".")
 

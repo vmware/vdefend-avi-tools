@@ -125,7 +125,7 @@
       "tags": [],
       "url": "https://github.com/lamw/vmware-scripts/blob/master/powershell/deploy_vdefend_security_services_platform.ps1",
       "maintainer": "lamw",
-      "updated": "2026-09-16",
+      "updated": "2026-11-22",
       "source": "community",
       "archived": false,
       "added": "2026-11-19"
@@ -214,7 +214,7 @@
       "url": "https://github.com/vmware/terraform-provider-ssp",
       "maintainer": "Broadcom",
       "source": "broadcom",
-      "updated": "2026-11-15",
+      "updated": "2026-11-22",
       "archived": false,
       "added": "2026-11-19"
     },
@@ -230,7 +230,7 @@
       "url": "https://github.com/vmware/terraform-provider-sspi",
       "maintainer": "Broadcom",
       "source": "broadcom",
-      "updated": "2026-11-15",
+      "updated": "2026-11-24",
       "archived": false,
       "added": "2026-11-19"
     },
@@ -248,7 +248,7 @@
       ],
       "url": "https://github.com/vmware-nsx/vcf-mgmt-wld-security",
       "maintainer": "nnikodimov",
-      "updated": "2026-08-31",
+      "updated": "2026-11-24",
       "source": "community",
       "archived": false,
       "added": "2026-08-31"
