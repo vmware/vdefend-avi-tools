@@ -151,12 +151,12 @@ hr { border-color: var(--border); }
 .toolbar-controls .btn { margin: 0; }
 .table-wrap { overflow-x: auto; }
 /* Fixed layout keeps the table within the page width; long content wraps instead of stretching it. */
-.table-wrap .table { margin-top: 0; table-layout: fixed; width: 100%; min-width: 52rem; }
-.table-wrap th:nth-child(1) { width: 22%; }
+.table-wrap .table { margin-top: 0; table-layout: fixed; width: 100%; min-width: 42rem; }
+.table-wrap th:nth-child(1) { width: 24%; }
 .table-wrap th:nth-child(2) { width: 9%; }
-.table-wrap th:nth-child(3) { width: 9rem; }
-.table-wrap th:nth-child(5) { width: 20%; }
-.table-wrap th:nth-child(6) { width: 7rem; }
+.table-wrap th:nth-child(3) { width: 7.5rem; }
+.table-wrap th:nth-child(5) { width: 16%; }
+.table-wrap th:nth-child(6) { width: 5.5rem; }
 .table-wrap td { vertical-align: top; overflow-wrap: anywhere; }
 .table-wrap td.nowrap { white-space: nowrap; }
 .desc-clamp { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
