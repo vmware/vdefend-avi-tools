@@ -63,7 +63,7 @@ To avoid forgetting step 2, enable the pre-commit hook once per clone:
 
     git config core.hooksPath .githooks
 
-It rebuilds and stages `build/config/added.json`, `site/data/index.json` and `README.md` on every commit, and blocks the commit if validation fails. `python3 build/build.py --check` validates and fails if any of those three generated files is out of date; CI runs it on every deploy.
+It rebuilds and stages `build/config/added.json`, `site/data/index.json` and `README.md` on every commit, and blocks the commit if validation fails. `python3 build/build.py --check` validates and fails if any of those three generated files is out of date; CI runs it on every pull request and before every deploy.
 
 New tags, products or types: add them to `build/config/tags.json` or `build/config/config.json` first. Unknown values are rejected, which keeps tags consistent. A new product needs `label`, `color` (a Clarity label colour such as `purple` or `blue`) and `short` (used in the README's latest additions list and the table view).
 
@@ -125,12 +125,13 @@ Other per-browser preferences in `localStorage`: `theme` (light/dark toggle in t
 - **`/tree/` or `/blob/` URL:** latest commit touching that path (a release date says nothing about one file).
 - **Other hosts:** the `Last-Modified` header, or `?` if there isn't one.
 - The `source` column shows which of these was used (`release`, `tag`, `commit`, `path-commit`, `last-modified`). `ARCHIVED` flags archived repos; set `archived` yourself if you agree.
-- `--write` updates `updated`, and `version` when a real release was found (leading `v` stripped). Dates only move forward unless you add `--allow-older`. `--no-version` leaves `version` alone. `--json PATH` saves the results.
+- `--write` updates `updated`, and `version` when a real release was found (leading `v` stripped). Dates only move forward unless you add `--allow-older`. `--no-version` leaves `version` alone. `--no-build` skips the automatic rebuild. `--json PATH` saves the results.
 - Add `"update_source": "commit"` to an entry to date it by its latest commit and ignore releases/tags (and never touch `version`). Use it for a monorepo root, where releases belong to individual components. `"update_source": "release"` does the opposite for a folder URL (`/tree/...`): it uses the repo's latest release instead of the folder's last commit. Without the field, a plain repo URL uses release → tag → commit and a folder URL uses the folder's last commit.
 - Add `"release_tag_prefix": "tool-a/v"` to version one component of a monorepo: only releases whose tag starts with the prefix are considered (drafts and pre-releases skipped), the prefix is removed from the stored `version` (`tool-a/v1.2.0` → `1.2.0`), and it works for both repo-root and folder URLs. It implies `update_source: release` and can't be combined with `commit`. If no release matches, the entry is reported as failed and left unchanged.
+- `check_updates.py` and `build.py` share one catalogue-discovery function (`build.iter_catalog()`), so both ignore folders whose name starts with `.`. `check_updates.py` imports `build.py` (keep them in the same folder) and calls it directly after `--write`.
 - Pass one or more entry ids (the filename without `.json`) to check only those, e.g. `python3 build/check_updates.py vmflowgen`. This works with `--write` too.
 - An `HTTP 403` note includes GitHub's reason. With a token, the usual cause is that the token isn't authorised for an org that enforces SAML SSO (token settings, "Configure SSO"), or a fine-grained token doesn't cover that org's repos.
-- Afterwards run `python3 build/build.py` to regenerate `site/data/index.json` and `README.md`.
+- With `--write`, the script then runs `build/build.py` itself, so the generated files are never left stale. Add `--no-build` to skip that (then run `python3 build/build.py` yourself before committing).
 - Each GitHub lookup takes 2-4 API calls (more with `release_tag_prefix`, which pages through releases), so a full run can exceed the 60 requests an hour allowed without a token. Set `GITHUB_TOKEN` to avoid hitting the limit. Non-GitHub URLs make no API calls.
 - `--write` edits the JSON text in place, preserving formatting; if `updated` or `version` is missing it is inserted after the `url` line.
 - A release date can lag far behind recent commits (some entries' latest release is years old), so review the report before using `--write`.
@@ -148,7 +149,7 @@ The page loads the Clarity CSS from the unpkg CDN, so the preview needs internet
 
 ## Publishing
 
-Repo **Settings → Pages → Source → GitHub Actions**. The workflow in `.github/workflows/pages.yml` runs `python3 build/build.py --check` and publishes only the `site/` folder on every push to `main` (it can also be started manually with "Run workflow"). If a generated file (`build/config/added.json`, `site/data/index.json` or `README.md`) is stale, the check fails and nothing is deployed, so commit them with your change.
+Repo **Settings → Pages → Source → GitHub Actions**. The workflow in `.github/workflows/pages.yml` runs `python3 build/build.py --check` on every pull request to `main` and on every push to `main`, and publishes only the `site/` folder after a push to `main` (it can also be started manually with "Run workflow"). If a generated file (`build/config/added.json`, `site/data/index.json` or `README.md`) is stale, the check fails and nothing is deployed, so commit them with your change.
 
 The header's GitHub and "Report an issue" links are hard-coded to `https://github.com/vmware/vdefend-avi-tools` in `site/index.html`; update them if the repository moves.
 

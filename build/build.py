@@ -8,6 +8,7 @@ Usage:  python3 build/build.py          # validate, then write site/data/index.j
 """
 import json
 import re
+import subprocess
 import sys
 from datetime import date
 from pathlib import Path
@@ -22,7 +23,7 @@ README_TEMPLATE = BUILD / "README.template.md"
 
 REQUIRED = {"name", "description", "product", "type", "tags", "url"}
 OPTIONAL = {"source", "version", "maintainer", "updated", "added", "archived", "archived_reason", "featured", "update_source", "release_tag_prefix", "$schema"}
-UPDATE_SOURCES = ("release", "commit")  # how check_updates.py dates a GitHub tool
+UPDATE_SOURCES = ("release", "commit")  # how check_updates.py dates a GitHub tool (it imports this)
 DEFAULT_SOURCE = "community"  # Broadcom must be stated explicitly
 SLUG = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 
@@ -234,9 +235,35 @@ def resolve_added(tools):
     return dict(sorted(result.items()))
 
 
-def main():
-    """Validate all tools, then write (or with --check, verify) generated files."""
-    check_only = "--check" in sys.argv
+def warn_if_hook_disabled():
+    """Print a tip if the pre-commit hook isn't enabled in this clone (never fails the build)."""
+    try:
+        hooks = subprocess.run(["git", "config", "core.hooksPath"], cwd=ROOT, capture_output=True,
+                               text=True, timeout=10).stdout.strip()
+        in_repo = (ROOT / ".git").exists()
+    except (OSError, subprocess.SubprocessError):
+        return
+    if in_repo and hooks != ".githooks":
+        print("Tip: enable the pre-commit hook so generated files can't go stale: "
+              "git config core.hooksPath .githooks", file=sys.stderr)
+
+
+def iter_catalog():
+    """Yield every catalogue file in a stable order, skipping hidden (dot-prefixed) folders.
+
+    Shared with check_updates.py so both scripts always agree on what is in the catalogue.
+    """
+    for path in sorted(TOOLS_DIR.rglob("*.json")):
+        if any(part.startswith(".") for part in path.relative_to(TOOLS_DIR).parts[:-1]):
+            continue  # ignore hidden directories
+        yield path
+
+
+def build(check_only=False):
+    """Validate all tools, then write (or with check_only, verify) generated files.
+
+    Exits via SystemExit on any problem; returns normally on success.
+    """
     errors = []
     try:
         config = load(BUILD / "config" / "config.json")
@@ -252,10 +279,7 @@ def main():
     tools = []
     seen_names = {}
     seen_ids = {}
-    for path in sorted(TOOLS_DIR.rglob("*.json")):
-        rel_parts = path.relative_to(TOOLS_DIR).parts[:-1]
-        if any(part.startswith(".") for part in rel_parts):
-            continue  # ignore hidden directories
+    for path in iter_catalog():
         try:
             tool = load(path)
         except ValueError as e:
@@ -304,6 +328,12 @@ def main():
     OUT.write_text(text, encoding="utf-8")
     README_OUT.write_text(readme, encoding="utf-8")
     print(f"Wrote build/config/added.json, site/data/index.json and README.md with {len(tools)} tools.")
+    warn_if_hook_disabled()
+
+
+def main():
+    """Command-line entry point: ``build.py`` or ``build.py --check``."""
+    build(check_only="--check" in sys.argv)
 
 
 if __name__ == "__main__":

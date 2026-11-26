@@ -3,23 +3,17 @@ name: Deploy site to GitHub Pages
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
 
 jobs:
-  deploy:
+  # Runs on pull requests (so a stale generated file is caught before merge) and on pushes to main.
+  check:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -27,6 +21,24 @@ jobs:
           python-version: "3.13"
       - name: Validate tools and check generated files are up to date
         run: python3 build/build.py --check
+
+  deploy:
+    needs: check
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    # Concurrency is scoped to deploy only, so a PR check can never cancel a running deploy.
+    concurrency:
+      group: pages
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
       - name: Stamp build info (published only, never committed)
         run: |
           printf '{"sha":"%s","date":"%s","repo":"%s"}\n' \
