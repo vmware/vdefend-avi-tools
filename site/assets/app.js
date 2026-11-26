@@ -332,11 +332,11 @@
         el('div', { class: 'dest' }, [dest.link]),
         el('div', { class: 'dest-source' }, [sourceLabel(t), ...archivedBadge(t)]),
       ]),
-      el('td', { class: 'left' }, productLabels(t, true)),
-      el('td', { class: 'left' }, [typeLabel(t)]),
-      el('td', { class: 'left' }, [el('div', { class: 'desc-clamp', title: t.description, text: t.description })]),
-      el('td', { class: 'left' }, tagLabels(t)),
-      el('td', { class: 'left nowrap', text: t.updated || '' }),
+      el('td', { class: 'left', 'data-label': 'Product' }, productLabels(t, true)),
+      el('td', { class: 'left', 'data-label': 'Type' }, [typeLabel(t)]),
+      el('td', { class: 'left', 'data-label': 'Description' }, [el('div', { class: 'desc-clamp', title: t.description, text: t.description })]),
+      el('td', { class: 'left', 'data-label': 'Tags' }, tagLabels(t)),
+      el('td', { class: 'left nowrap', 'data-label': 'Updated', text: t.updated || '' }),
     ]); });
     return el('div', { class: 'table-wrap' }, [
       el('table', { class: 'table table-compact' }, [el('thead', {}, [head]), el('tbody', {}, rows)]),
@@ -392,9 +392,13 @@
   try { filtersCollapsed = localStorage.getItem(FILTERS_KEY); } catch (e) { filtersCollapsed = null; }
   // Remembered choice wins; otherwise start collapsed on narrow screens.
   filtersCollapsed = filtersCollapsed === null ? window.innerWidth < 768 : filtersCollapsed === 'true';
+  // On phones the filters are an overlay drawer: always start closed and never persist the open state.
+  const mobileMq = window.matchMedia('(max-width: 767px)');
+  if (mobileMq.matches) filtersCollapsed = true;
 
   function renderFiltersToggle() {
     $('filters').hidden = filtersCollapsed;
+    $('filters-backdrop').hidden = filtersCollapsed || !mobileMq.matches;
     const active = state.product.size + state.type.size + state.tags.size + (state.q ? 1 : 0) + (state.archived !== 'hide' ? 1 : 0) + (state.starred ? 1 : 0);
     const b = $('toggle-filters');
     b.textContent = (filtersCollapsed ? 'Show filters' : 'Hide filters') + (active ? ` (${active} active)` : '');
@@ -475,9 +479,14 @@
   $('view-table').addEventListener('click', () => { state.view = 'table'; render(); });
   $('toggle-filters').addEventListener('click', () => {
     filtersCollapsed = !filtersCollapsed;
-    try { localStorage.setItem(FILTERS_KEY, filtersCollapsed); } catch (e) { /* storage unavailable */ }
+    if (!mobileMq.matches) { try { localStorage.setItem(FILTERS_KEY, filtersCollapsed); } catch (e) { /* storage unavailable */ } }
     renderFiltersToggle();
   });
+  function closeDrawer() { if (mobileMq.matches && !filtersCollapsed) { filtersCollapsed = true; renderFiltersToggle(); $('toggle-filters').focus(); } }
+  $('filters-backdrop').addEventListener('click', closeDrawer);
+  $('filters-done').addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
+  mobileMq.addEventListener('change', (e) => { if (e.matches) filtersCollapsed = true; renderFiltersToggle(); });
   $('clear').addEventListener('click', () => {
     state.q = ''; $('search').value = '';
     state.product.clear(); state.type.clear(); state.tags.clear(); state.starred = false; state.archived = DEFAULTS.archived;
